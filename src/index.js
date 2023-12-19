@@ -54,16 +54,16 @@ module.exports = function () {
             
             if (testRunInfo.unstable)
                 name += ' (unstable)';
-            var caseName = this.escapeXml(name);
+            var caseName = this.escapeXml(name).replace("Scenario: ", "").replace("Scenario Outline: ", "");
 
             if (testRunInfo.screenshotPath)
                 name += ` (screenshots: ${testRunInfo.screenshotPath})`;
 
             name = this.escapeXml(name);
 
-            var openTag = `<testcase classname="${caseName.replace("Scenario: ", "").replace("Scenario Outline: ", "")}" ` +
+            var openTag = `<testcase classname="${caseName}" ` +
                           `file="${this.escapeXml(this.currentFixture.path)}" ` +  
-                          `time="${testRunInfo.durationMs / 1000}">\n`;
+                          `name=" " time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
 
