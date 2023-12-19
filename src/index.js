@@ -51,10 +51,10 @@ module.exports = function () {
 
         reportTestDone (name, testRunInfo) {
             var hasErr = !!testRunInfo.errs.length;
-            var caseName = this.escapeXml(name);
-
+            
             if (testRunInfo.unstable)
                 name += ' (unstable)';
+            var caseName = this.escapeXml(name);
 
             if (testRunInfo.screenshotPath)
                 name += ` (screenshots: ${testRunInfo.screenshotPath})`;
@@ -63,7 +63,7 @@ module.exports = function () {
 
             var openTag = `<testcase classname="${caseName.replace("Scenario: ", "").replace("Scenario Outline: ", "")}" ` +
                           `file="${this.escapeXml(this.currentFixture.path)}" ` +  
-                          `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
+                          `time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
 
