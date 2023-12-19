@@ -51,6 +51,7 @@ module.exports = function () {
 
         reportTestDone (name, testRunInfo) {
             var hasErr = !!testRunInfo.errs.length;
+            var caseName = this.escapeXml(name);
 
             if (testRunInfo.unstable)
                 name += ' (unstable)';
@@ -60,7 +61,7 @@ module.exports = function () {
 
             name = this.escapeXml(name);
 
-            var openTag = `<testcase classname="${this.escapeXml(this.currentFixture.name)}" ` +
+            var openTag = `<testcase classname="${caseName.replace("Scenario: ", "").replace("Scenario Outline: ", "")}" ` +
                           `file="${this.escapeXml(this.currentFixture.path)}" ` +  
                           `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
 
