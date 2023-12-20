@@ -63,7 +63,7 @@ module.exports = function () {
 
             var openTag = `<testcase classname="${caseName}" ` +
                           `file="${this.escapeXml(this.currentFixture.path)}" ` +  
-                          `name=" " time="${testRunInfo.durationMs / 1000}">\n`;
+                          `name=" -- " time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
 
